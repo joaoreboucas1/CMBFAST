@@ -21,7 +21,9 @@ incfast	= cmbfast.inc
 incpara	= cmbpar.inc
 inclval = lvalues.inc
 
-default: jlgen ujlgen jlens cmb 
+# JVR MOD BEGIN: adding jl.dat and jlens.dat targets in default
+default: jlgen ujlgen jlens cmb jl.dat jlens.dat
+# JVR MOD END
 
 cmb: $(OBJCMB) $(dverk)
 	$(FC) $(FFLAGS) -o $@ $(OBJCMB) $(dverk) $(LDFLAGS)
@@ -35,6 +37,13 @@ jlgen: jlgen.o
 
 jlens: jlens.o
 	$(FC) $(FFLAGS) -o $@ jlens.o
+
+# JVR MOD BEGIN: Defining jl.dat and jlens.dat recipes
+jl.dat: jlgen
+	./jlgen < jlgen_input.txt
+jlens.dat: jlens
+	./jlens < jlens_input.txt
+# JVR MOD END
 
 $(OBJTAB): $(incfast) $(inclval)
 $(OBJCMB): $(incfast) $(incpara) $(inclval)
