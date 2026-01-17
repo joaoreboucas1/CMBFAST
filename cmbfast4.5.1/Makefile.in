@@ -53,3 +53,4 @@ clean:
 tidy: clean
 	-rm -f jlgen ujlgen jlens cmb ksplit
 	-rm -f Makefile Makefile.bak
+	-rm -f jl.dat jlens.dat
