@@ -497,7 +497,10 @@ C	===============================================================
 	double precision timeTh,timeH
 	double precision CB1,CDB,CR,CK,CL,CT,fHe,CB1_He1,CB1_He2,CDB_He,fu
 	double precision Bfact,CK_He,CL_He
-	double precision a_VF,b_VF,T_0,T_1,sq_0,sq_1,a_PPB,b_PPB,c_PPB,d_PPB
+	double precision a_VF,b_VF,T_0,T_1,sq_0,sq_1,a_PPB,b_PPB,c_PPB
+C   JVR MOD BEGIN: putting declaration of d_PPB in another line
+	double precision d_PPB
+C   JVR MOD END
 
 	common/Cfund/C,k_B,h_P,m_e,m_H,sigma,a,Pi
 	common/Cdata/Lambda,H_frac,CB1,CDB,CR,CK,CL,CT,

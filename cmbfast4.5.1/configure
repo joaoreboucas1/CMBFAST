@@ -71,7 +71,9 @@ EOF
 
 setDefaults () {
     FC="f77"
-    FFLAGS="-O2"
+	# JVR MOD BEGIN: changing default f90 compiler flags
+    FFLAGS="-O3 -std=legacy"
+	# JVR MOD END
 
     LDFLAGS=""
     OBJMPI=""
@@ -104,7 +106,9 @@ setDefaults () {
         IRIX*)
             FFLAGS="-Ofast=`uname -m`";;
 	Linux*)
-	    FC="g77";;
+		# JVR MOD BEGIN: changing default fortran compiler to gfortran
+	    FC="gfortran";;
+		# JVR MOD END
     esac
 
     fits=0
@@ -165,14 +169,17 @@ readArgs () {
 }
 
 checkFC () {
-    ECHO "checking for F77 compiler... "
-    if [ ! -x "`which ${FC}`" ]; then
-	echo "no"
-	echo "Error: F77 compiler (${FC}) not found".
-	exit
-    else
-	echo "yes"
-    fi
+	:
+    # JVR MOD BEGIN: removing the compiler check
+	# ECHO "checking for F77 compiler... "
+    # if [ ! -x "`which ${FC}`" ]; then
+	# echo "no"
+	# echo "Error: F77 compiler (${FC}) not found".
+	# exit
+    # else
+	# echo "yes"
+    # fi
+	# JVR MOD END
 }
 
 checkIARGC () {

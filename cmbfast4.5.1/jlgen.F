@@ -113,7 +113,9 @@ cxxx          end if
 ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 
 c Subroutine version of the main jlgen program.
-        subroutine(lmoin,kmax0,filename)
+c JVR MOD BEGIN: inserting name in subroutine main
+        subroutine main(lmoin,kmax0,filename)
+c JVR MOD END
       include 'cmbfast.inc'
 
       parameter (xlimmin=10.0)
