@@ -11,14 +11,15 @@ CMBFAST has an [official website](https://lambda.gsfc.nasa.gov/toolbox/cmbfast_o
 
 ## Compilation
 
-The user can compile the code with `./configure` and `make` (after adjusting the `Makefile` as described below). The code contains very small changes in order to make it compile properly in modern computers. These changes are the following:
+The user can compile the code with `./configure` and `make` from the source folder `cmbfast-4.5.1/`. The code contains very small changes in order to make it compile properly in modern computers. These changes are the following:
 - `configure`: remove the fortran compiler check: it used to check for the existence of `g77`, but it was superseded by `gfortran`;
 - `Makefile`: add `gfortran` as the fortran compiler and `-std=legacy` to its flags;
 - `jlgen.F`: in line 116, the main subroutine was unnamed, I set it to `main`;
 - `recfast.f`: in line 500, there are declarations of many `double` variables. However, in the Fortran 77 standard, the source code could only be contained between columns 7-72. The declaration in line 500, however, used to overflow the upper limit, so I just moved `d_PPB` to the following line.
+- Before running CMBFAST for the first time, the user needs to generate Bessel function tables with the binaries `jlgen` and `jlens`. This process is now done at compilation.
 
 ## Usage
 
-Before running CMBFAST for the first time, the user needs to generate Bessel function tables with the binaries `jlgen` and `jlens`. The output paths are conventionally `jl.dat` and `jlens.dat` respectively, but this can be modified by the user.
+After compilation, the user can run the binary with `./cmb`, where cosmological parameters are input manually with the keyboard. These can also be input from a formatted file, see `example.in` and, from the source directory, run the example with the command `./cmb < ../example.in`.
 
-After compilation, the user can run the binary with `./cmb`, where cosmological parameters are input manually. These can also be input from a formatted file, see `example.in`
+After compiling the binaries, the user can work with a Python script that runs CMBFAST under the hood. From the top directory, run `python3 ./cmbfast.py` for an example.
