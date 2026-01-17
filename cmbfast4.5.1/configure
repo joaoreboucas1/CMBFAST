@@ -70,7 +70,7 @@ EOF
 }
 
 setDefaults () {
-    FC="gfortran" # "f77" # JVR MOD: changing fortran compiler 
+    FC="f77"
     FFLAGS="-O2"
 
     LDFLAGS=""
@@ -164,7 +164,16 @@ readArgs () {
     done
 }
 
-
+checkFC () {
+    ECHO "checking for F77 compiler... "
+    if [ ! -x "`which ${FC}`" ]; then
+	echo "no"
+	echo "Error: F77 compiler (${FC}) not found".
+	exit
+    else
+	echo "yes"
+    fi
+}
 
 checkIARGC () {
     if [ $iarg -eq 1 ]; then
@@ -271,7 +280,7 @@ readArgs $*
 [ $hacc -eq 1 ] && FFLAGS="${FFLAGS} ${HA}"
 [ $oldn -eq 1 ] && FFLAGS="${FFLAGS} ${ON}"
 
-# checkFC
+checkFC
 checkIARGC
 checkFITS
 checkMAX

@@ -113,7 +113,7 @@ cxxx          end if
 ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 
 c Subroutine version of the main jlgen program.
-        subroutine main(lmoin,kmax0,filename)
+        subroutine(lmoin,kmax0,filename)
       include 'cmbfast.inc'
 
       parameter (xlimmin=10.0)
